@@ -70,6 +70,8 @@ x-airflow-common:
 services:
   postgres:
     image: postgres:13
+    hostname: postgres
+    container_name: postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -84,6 +86,8 @@ services:
 
   redis:
     image: redis:latest
+    hostname: redis
+    container_name: redis
     ports:
       - "6379:6379"
     healthcheck:
@@ -96,6 +100,8 @@ services:
   airflow-webserver:
     <<: *airflow-common
     command: webserver
+    hostname: webserver
+    container_name: webserver
     ports:
       - "8080:8080"
     healthcheck:
@@ -108,6 +114,8 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    hostname: scheduler
+    container_name: scheduler
     healthcheck:
       test: ["CMD-SHELL", 'airflow jobs check --job-type SchedulerJob --hostname "$${HOSTNAME}"']
       interval: 10s
@@ -151,6 +159,8 @@ services:
 
   flower:
     <<: *airflow-common
+    hostname: flower
+    container_name: flower
     command: celery flower
     ports:
       - "5555:5555"
