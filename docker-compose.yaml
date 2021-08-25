@@ -139,15 +139,15 @@ services:
     ports:
       - "2222:22"
 
-#  airflow-init:
-#    <<: *airflow-common
-#    command: version
-#    environment:
-#      <<: *airflow-common-env
-#      _AIRFLOW_DB_UPGRADE: 'true'
-#      _AIRFLOW_WWW_USER_CREATE: 'true'
-#      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
-#      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+  airflow-init:
+    <<: *airflow-common
+    command: version
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_UPGRADE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
 
   flower:
     <<: *airflow-common
